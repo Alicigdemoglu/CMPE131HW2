@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if name %}
+        <h1>Welcome {{ name }}, here are top destinations!</h1>
+    {% else %}
+        <h1>Welcome Lisa, here are top destinations!</h1>
+    {% endif %}
+    <h3><a href="https://www.google.com">goooogle</a></h3>
+    <ul>
+    {% for city in top_cities %}
+            <li>{{ city }}</li>
+    {% endfor %}
+    </ul>
+    <form method="Post" class="formation" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.city_name.label(class="form-control-label") }}
+
+            {% if form.city_name.errors %}
+                {{ form.city_name(class="form-control form-control-lg is-invalid") }}
+                {% for error in form.city_name.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            {% else %}
+                {{ form.city_name(class="form-control form-control-lg") }}
+            {% endif %}
+        </div><br>
+        <div class="form-group">
+            {{ form.city_rank.label(class="form-control-label") }}
+            {% if form.city_rank.errors %}
+                {{ form.city_rank(class="form-control form-control-lg is-invalid") }}
+                {% for error in form.city_rank.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            {% else %}
+                {{ form.city_rank(class="form-control form-control-lg") }}
+            {% endif %}
+        </div><br>
+        <div class="form-group">
+            {{ form.is_visited.label(class="form-control-label") }}
+            {{ form.is_visited(class="form-control form-control-lg") }}
+        </div><br>
+        <div class="form-group">
+            <label>Submit</label>
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+{% endblock content %}
